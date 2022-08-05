@@ -6,6 +6,8 @@ import {  TypeOrmModuleOptions, TypeOrmOptionsFactory } from "@nestjs/typeorm";
 export class DatabaseConnectionService implements TypeOrmOptionsFactory {
   createTypeOrmOptions(): TypeOrmModuleOptions {
     return {
+      /*
+      POSTGRES
       name: 'default',
       type: 'postgres',
       host: process.env.DATABASE_HOST,
@@ -16,7 +18,19 @@ export class DatabaseConnectionService implements TypeOrmOptionsFactory {
       synchronize: true,
       dropSchema: false,
       logging: true,
-      entities: ['dist/**/*.entity.js'],
+      entities: ['dist/**//*.entity.js'],
+      */
+
+      type: 'mysql',
+        host: 'localhost',
+        port: 3306,
+        username: 'root',
+        password: '12345678',
+        database: 'nest-blog',
+        entities: [
+            __dirname + '/../**/*.entity{.ts,.js}',
+        ],
+        synchronize: true,
     };
   }
 }
